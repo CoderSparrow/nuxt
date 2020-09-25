@@ -5,13 +5,13 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <nuxt-link class="nav-link" to="/">Home <span class="sr-only">(current)</span></nuxt-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <nuxt-link class="nav-link" to="/users">Users</nuxt-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Users</a>
+          <nuxt-link class="nav-link" to="/about">About</nuxt-link>
         </li>
       </ul>
     </div>
