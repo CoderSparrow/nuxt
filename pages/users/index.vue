@@ -2,8 +2,8 @@
   <section>
     <h1>{{ pageTitle }}</h1>
     <ul>
-      <li v-for="user in users">
-        <a href="#" @click.prevent="goTo(user)">User {{user}}</a>
+      <li v-for="user in users" :key="user.id">
+        <a href="#" @click.prevent="goTo(user.id)">{{user.name}}</a>
       </li>
     </ul>
   </section>
@@ -11,17 +11,14 @@
 
 <script>
 export default {
-  name: "users",
-  asyncData () {
-    const users = [1, 2, 3, 4, 5]
-
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          users
-        })
-      }, 3000)
-    })
+  asyncData ({ $axios, error }) {
+    return $axios.$get('https://jsonplaceholder.typicode.com/users')
+      .then((users) => {
+        return {users}
+      })
+      .catch((err) => {
+        error(err)
+      })
   },
   data () {
     return {
