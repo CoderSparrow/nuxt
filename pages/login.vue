@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="onsubmit">
     <h1>Login</h1>
     <div class="form-group">
       <input type="text" class="form-control">
@@ -16,7 +16,13 @@
 
 <script>
 export default {
-  layout: 'empty'
+  layout: 'empty',
+  methods: {
+    onsubmit () {
+      this.$store.dispatch('login')
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 

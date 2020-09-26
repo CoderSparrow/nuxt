@@ -14,7 +14,10 @@
           <nuxt-link no-prefetch active-class="active" class="nav-link" to="/about">About</nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link no-prefetch active-class="active" class="nav-link" to="/login">Login</nuxt-link>
+          <nuxt-link no-prefetch v-if="!$store.getters.isAuth" active-class="active" class="nav-link" to="/login">Login</nuxt-link>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" v-if="$store.getters.isAuth" @click.prevent="logout">Logout</a>
         </li>
       </ul>
     </div>
@@ -23,7 +26,12 @@
 
 <script>
 export default {
-  name: "Navbar"
+  methods: {
+    logout () {
+      this.$store.dispatch('logout')
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 
