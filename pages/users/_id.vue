@@ -7,13 +7,14 @@ export default {
   validate ({ params}) {
     return /^\d+$/.test(params.id)
   },
-  async asyncData({ params, error, $axios }) {
-    try {
-      const user = await $axios.$get(`https://jsonplaceholder.typicode.com/users/${params.id}`)
-      return {user}
-    } catch (e) {
-      error(e)
-    }
+  asyncData({ params, store, error }) {
+    return store.dispatch('users/fetchUserById', params.id)
+      .then(user => {
+        return {user}
+      })
+      .catch(e => {
+        error(e)
+      })
   }
 }
 </script>

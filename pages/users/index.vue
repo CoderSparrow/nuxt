@@ -2,7 +2,7 @@
   <section>
     <h1>{{ pageTitle }}</h1>
     <ul>
-      <li v-for="user in users" :key="user.id">
+      <li v-for="user in $store.getters['users/users']" :key="user.id">
         <a href="#" @click.prevent="goTo(user.id)">{{user.name}}</a>
       </li>
     </ul>
@@ -11,14 +11,12 @@
 
 <script>
 export default {
-  asyncData ({ $axios, error }) {
-    return $axios.$get('https://jsonplaceholder.typicode.com/users')
-      .then((users) => {
-        return {users}
-      })
-      .catch((err) => {
-        error(err)
-      })
+  // asyncData ({ store, error }) {
+  //   return store.dispatch('users/fetchUsers')
+  // },
+  async fetch({ store }) {
+    if (store.getters['users/users'].length === 0)
+    await store.dispatch('users/fetchUsers')
   },
   data () {
     return {
