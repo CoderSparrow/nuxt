@@ -14,10 +14,10 @@ export default {
   // asyncData ({ store, error }) {
   //   return store.dispatch('users/fetchUsers')
   // },
-  async fetch({ store }) {
-    if (store.getters['users/users'].length === 0)
-    await store.dispatch('users/fetchUsers')
-  },
+  // async fetch({ store }) {
+  //   if (store.getters['users/users'].length === 0)
+  //   await store.dispatch('users/fetchUsers')
+  // },
   data () {
     return {
       pageTitle: 'Users page'

@@ -1,4 +1,7 @@
 export const actions = {
+  async nuxtServerInit ({ dispatch }) {
+    await dispatch('users/fetchUsers')
+  },
   login ({ commit }) {
     commit('setToken', 'true')
   },
